@@ -1,5 +1,6 @@
 import express, { Express, NextFunction, Request, Response } from "express";
 import "reflect-metadata";
+import "express-async-errors";
 import { AppError } from "./errors/AppError";
 import { getRoutes } from "./routes";
 
@@ -10,7 +11,7 @@ app.use(express.json());
 app.use(getRoutes());
 
 app.use(
-  (error: Error, requrest: Request, response: Response, next: NextFunction) => {
+  (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {
       return response.status(error.statusCode).json({
         message: error.message,

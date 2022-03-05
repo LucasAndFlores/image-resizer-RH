@@ -1,18 +1,18 @@
 import { readdir, stat } from "fs/promises";
 import path from "path";
 import { Service } from "typedi";
+import { AppError } from "../errors/AppError";
 import { IImageResizeRepository, IHandleFile } from "../interfaces";
 
 @Service()
 export class ImageResizeRepository implements IImageResizeRepository {
   async find(filename: string): Promise<IHandleFile> {
-    const filePath = path.resolve(__dirname, "..", "imgs");
-
-    let handleFile: IHandleFile = {
-      path: "",
-    };
-
     try {
+      const filePath = path.resolve(__dirname, "..", "imgs");
+
+      let handleFile: IHandleFile = {
+        path: "",
+      };
       const files = await readdir(filePath);
       files.forEach((file) => {
         let removePoint = file.slice(0, file.indexOf("."));
@@ -21,10 +21,9 @@ export class ImageResizeRepository implements IImageResizeRepository {
           handleFile.path = `${filePath}/${file}`;
         }
       });
+      return handleFile;
     } catch (error) {
-      console.log(error);
+      throw new AppError("Bad request on repository", 400);
     }
-
-    return handleFile;
   }
 }

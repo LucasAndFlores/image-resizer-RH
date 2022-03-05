@@ -4,6 +4,6 @@ node_modules/
 jspm_packages/
 
 dist/
-
+__test__
 
 .env

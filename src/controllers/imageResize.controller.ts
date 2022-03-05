@@ -11,16 +11,20 @@ export class ImageResizeController {
   }
 
   async handle(req: Request, res: Response, next: NextFunction) {
-    const { imageName, height, width } = req.params;
+    try {
+      const { imageName, height, width } = req.params;
 
-    const response = await this.logic.execute({
-      imageName: imageName as string,
-      height: Number(height),
-      width: Number(width),
-    });
-    return res
-      .status(200)
-      .setHeader("content-type", "text/html")
-      .send(response);
+      const response = await this.logic.execute({
+        imageName: imageName as string,
+        height: Number(height),
+        width: Number(width),
+      });
+      return res
+        .status(200)
+        .setHeader("content-type", "text/html")
+        .send(response);
+    } catch (error) {
+      next(error);
+    }
   }
 }

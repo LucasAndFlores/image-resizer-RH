@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "npx nodemon",
     "build": "tsc && cp -R ./src/imgs ./dist",
-    "copy": "cp -R ./src/imgs ./dist"
+    "start": "node dist/server.js",
+    "copy": "cp -R ./src/imgs ./dist",
+    "test": "jest"
   },
   "author": "lucas andrade <lcs.oliveira93@gmail.com>",
   "license": "MIT",
@@ -27,6 +29,8 @@
     "@types/swagger-ui-express": "^4.1.3",
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
+    "ts-jest": "^27.1.3",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.2"
   }
 }

@@ -2,6 +2,7 @@ import { Service, Container } from "typedi";
 import { ImageResizeRepository } from "../repositories";
 import { IImageFormatDTO } from "../dto/IImageFormatDTO";
 import Sharp from "sharp";
+import { AppError } from "../errors/AppError";
 
 @Service()
 export class ImageResizeLogic {
@@ -13,6 +14,10 @@ export class ImageResizeLogic {
 
   async execute({ height, imageName, width }: IImageFormatDTO) {
     const filePath = await this.imageRepository.find(imageName);
+
+    if (!filePath.path) {
+      throw new AppError("Image not finded or wrong name", 404);
+    }
 
     const imageTest = await Sharp(filePath.path)
       .resize({

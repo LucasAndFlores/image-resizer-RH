@@ -1,0 +1,6 @@
+{
+  "watch": ["src/", "swagger.yml"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "npm run build && cp -R ./src/imgs ./dist && node --inspect=9234 dist/server.js"
+}

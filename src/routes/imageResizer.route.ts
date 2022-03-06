@@ -4,18 +4,16 @@ import { ImageResizeController } from "../controllers";
 import { ImageResizeValidator } from "./schemas";
 import { RouteValidator } from "./validation";
 
-export const imageResizeRouter = () => {
-  const router = Router();
+const imageResizeRouter = Router();
 
-  const controller = Container.get(ImageResizeController);
+const controller = new ImageResizeController();
 
-  router.get(
-    "/resize/:imageName/:width/:height",
-    RouteValidator.validate(ImageResizeValidator.get()),
-    async (req: Request, res: Response, next: NextFunction) => {
-      await controller.handle(req, res, next);
-    }
-  );
+imageResizeRouter.get(
+  "/resize/:imageName/:width/:height",
+  RouteValidator.validate(ImageResizeValidator.get()),
+  async (req: Request, res: Response, next: NextFunction) => {
+    await controller.handle(req, res, next);
+  }
+);
 
-  return router;
-};
+export { imageResizeRouter };

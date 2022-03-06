@@ -1,4 +1,4 @@
-import { readdir, stat } from "fs/promises";
+import { readdir } from "fs/promises";
 import path from "path";
 import { Service } from "typedi";
 import { AppError } from "../errors/AppError";
@@ -23,7 +23,7 @@ export class ImageResizeRepository implements IImageResizeRepository {
       });
       return handleFile;
     } catch (error) {
-      throw new AppError("Bad request on repository", 400);
+      throw new AppError("Bad request", 400);
     }
   }
 }

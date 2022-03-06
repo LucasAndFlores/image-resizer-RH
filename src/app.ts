@@ -10,21 +10,7 @@ const app = express();
 
 app.use(express.json());
 
-Sentry.init({
-  dsn: "https://e8894fba002c4f27a5a3b9efcaf93acd@o1160549.ingest.sentry.io/6245066",
-  integrations: [
-    new Sentry.Integrations.Http({ tracing: true }),
-    new Tracing.Integrations.Express({ app }),
-  ],
-  tracesSampleRate: 1.0,
-});
-
-app.use(Sentry.Handlers.requestHandler());
-app.use(Sentry.Handlers.tracingHandler());
-
 app.use(getRoutes());
-
-app.use(Sentry.Handlers.errorHandler());
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {

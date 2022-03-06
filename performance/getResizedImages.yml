@@ -1,0 +1,17 @@
+config:
+  target: "http://localhost:5050"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      name: "5 virtual users doing request every second for 1 minute"
+  payload:
+    path: "imageResize.csv"
+    fields:
+      - "imageName"
+      - "width"
+      - "heigth"
+    skipHeader: true
+scenarios:
+  - flow:
+      - get:
+          url: "/resize/{{ imageName }}/{{ width }}/{{ heigth }}"

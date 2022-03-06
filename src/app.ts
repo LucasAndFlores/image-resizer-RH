@@ -4,13 +4,13 @@ import "express-async-errors";
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
 import { AppError } from "./errors/AppError";
-import { getRoutes } from "./routes";
+import { router } from "./routes";
 
 const app = express();
 
 app.use(express.json());
 
-app.use(getRoutes());
+app.use(router);
 
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {

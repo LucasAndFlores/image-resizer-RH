@@ -16,20 +16,19 @@ export class ImageResizeLogic {
     const filePath = await this.imageRepository.find(imageName);
 
     if (!filePath.path) {
-      throw new AppError("Image not finded or wrong name", 404);
+      throw new AppError("Image not found", 404);
     }
 
     const imageTest = await Sharp(filePath.path)
-      .resize({
-        width: width,
-        height: height,
+      .resize(width, height, {
+        fit: "fill",
       })
       .toFormat("png")
       .toBuffer();
 
-    const bufToString = imageTest.toString("base64");
+    const buffToString = imageTest.toString("base64");
 
-    const html = `<html><body><img src='data:image/png;base64,${bufToString}'/></body></html>`;
+    const html = `<html><body><img src='data:image/png;base64,${buffToString}'/></body></html>`;
 
     return html;
   }

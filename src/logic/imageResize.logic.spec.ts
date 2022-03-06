@@ -25,7 +25,7 @@ describe("Image resize logic", () => {
     expect(typeof result).toBe("string");
   });
 
-  it("Should not be able to generate a new image if don't exist or have wrong name", async () => {
+  it("Should not be able to generate a new image if there isn't one", async () => {
     expect(async () => {
       const params = {
         imageName: "brno5",

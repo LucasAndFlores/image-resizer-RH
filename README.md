@@ -1,4 +1,4 @@
-# Image resize rh
+# Image resizer rh
 
 Welcome! This is a project that resizes images, using a GET route, with specific parameters (ImageName, width and height) and sends them to you.
 

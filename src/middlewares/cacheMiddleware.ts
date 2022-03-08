@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, request } from "express";
-import { cache } from "../app";
+import { cache } from "../routes/imageResizer.route";
 
 export function verifyIfImageCacheExist(
   req: Request,

@@ -1,7 +1,7 @@
 import { readdir } from "fs/promises";
 import path from "path";
 import { Service } from "typedi";
-import { cache } from "../app";
+import { cache } from "../routes/imageResizer.route";
 import { AppError } from "../errors/AppError";
 import { IImageResizeRepository, IHandleFile } from "../interfaces";
 

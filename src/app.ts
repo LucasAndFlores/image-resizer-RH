@@ -9,8 +9,6 @@ import NodeCache from "node-cache";
 
 const app = express();
 
-const cache = new NodeCache({ stdTTL: 60 });
-
 app.use(express.json());
 
 app.use(router);
@@ -30,4 +28,4 @@ app.use(
   }
 );
 
-export { app, cache };
+export { app };

@@ -3,7 +3,6 @@ import { ImageResizeRepository } from "../repositories";
 import { IImageFormatDTO } from "../dto/IImageFormatDTO";
 import Sharp from "sharp";
 import { AppError } from "../errors/AppError";
-import { cache } from "../app";
 
 @Service()
 export class ImageResizeLogic {

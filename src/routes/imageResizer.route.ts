@@ -4,8 +4,11 @@ import { ImageResizeController } from "../controllers";
 import { verifyIfImageCacheExist } from "../middlewares/cacheMiddleware";
 import { ImageResizeValidator } from "./schemas";
 import { RouteValidator } from "./validation";
+import NodeCache from "node-cache";
 
 const imageResizeRouter = Router();
+
+const cache = new NodeCache({ stdTTL: 60 });
 
 const controller = new ImageResizeController();
 
@@ -18,4 +21,4 @@ imageResizeRouter.get(
   }
 );
 
-export { imageResizeRouter };
+export { imageResizeRouter, cache };

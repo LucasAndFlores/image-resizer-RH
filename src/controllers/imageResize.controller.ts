@@ -4,7 +4,7 @@ import { ImageResizeLogic } from "../logic";
 
 @Service()
 export class ImageResizeController {
-  private logic: ImageResizeLogic;
+  logic: ImageResizeLogic;
 
   constructor() {
     this.logic = Container.get(ImageResizeLogic);
@@ -14,10 +14,17 @@ export class ImageResizeController {
     try {
       const { imageName, height, width } = req.params;
 
+      let path = "";
+
+      if (req.cacheFile?.dirPath) {
+        path = req.cacheFile?.dirPath;
+      }
+
       const response = await this.logic.execute({
         imageName: imageName as string,
         height: Number(height),
         width: Number(width),
+        dirPath: path,
       });
       return res
         .status(200)

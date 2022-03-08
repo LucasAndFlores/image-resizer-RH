@@ -5,8 +5,11 @@ import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
 import { AppError } from "./errors/AppError";
 import { router } from "./routes";
+import NodeCache from "node-cache";
 
 const app = express();
+
+const cache = new NodeCache({ stdTTL: 60 });
 
 app.use(express.json());
 
@@ -27,4 +30,4 @@ app.use(
   }
 );
 
-export { app };
+export { app, cache };

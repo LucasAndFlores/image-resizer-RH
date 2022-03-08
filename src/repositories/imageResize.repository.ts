@@ -1,6 +1,7 @@
 import { readdir } from "fs/promises";
 import path from "path";
 import { Service } from "typedi";
+import { cache } from "../app";
 import { AppError } from "../errors/AppError";
 import { IImageResizeRepository, IHandleFile } from "../interfaces";
 
@@ -21,6 +22,8 @@ export class ImageResizeRepository implements IImageResizeRepository {
           handleFile.path = `${filePath}/${file}`;
         }
       });
+
+      cache.set(filename, handleFile.path);
       return handleFile;
     } catch (error) {
       throw new AppError("Bad request", 400);

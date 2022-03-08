@@ -4,10 +4,10 @@ config:
     - duration: 60
       arrivalRate: 5
       name: "5 virtual users doing request every second for 1 minute"
-    ##- duration: 60
-    ##arrivalRate: 10
-    ##rampTo: 100
-    ##name: "10 to 100 virtual users doing request every second for 1 minute"
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 15
+      name: "5 to 15 virtual users doing request every second for 1 minute"
   payload:
     path: "imageResize.csv"
     fields:

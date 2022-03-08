@@ -6,20 +6,28 @@ import { AppError } from "../errors/AppError";
 
 @Service()
 export class ImageResizeLogic {
-  private imageRepository: ImageResizeRepository;
+  imageRepository: ImageResizeRepository;
 
   constructor() {
     this.imageRepository = Container.get(ImageResizeRepository);
   }
 
-  async execute({ height, imageName, width }: IImageFormatDTO) {
-    const filePath = await this.imageRepository.find(imageName);
+  async execute({ height, imageName, width, dirPath }: IImageFormatDTO) {
+    let newFilePath = {
+      path: "",
+    };
 
-    if (!filePath.path) {
+    if (!dirPath) {
+      newFilePath = await this.imageRepository.find(imageName);
+    } else {
+      newFilePath.path = dirPath as string;
+    }
+
+    if (!newFilePath?.path) {
       throw new AppError("Image not found", 404);
     }
 
-    const imageTest = await Sharp(filePath.path)
+    const imageTest = await Sharp(newFilePath.path)
       .resize(width, height, {
         fit: "fill",
       })

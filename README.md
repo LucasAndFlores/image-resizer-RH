@@ -49,4 +49,4 @@ If you would like to run performance test, you will need to install artillery.io
 After that, you will need to open terminal, access the folder performance of project and run `artillery run getResizedImages.yml`
 Wait a few seconds and you will see the results.
 
-You will see in the file getResizedImages.yml one test commented, and if you would like to run it, I recommend you stop the container with `docker-compose down` and run the API locally (open the terminal and run `yarn dev` or `npm run dev`), uncomment the lines and check if the indentation is correct, and run `artillery run getResizedImages.yml` in terminal, inside of the performance directory
+We will have performance tests, where 5 virtual users do requests every second for 1 minute, with an average of 50 requests every 10 seconds.

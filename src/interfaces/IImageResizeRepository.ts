@@ -1,5 +1,5 @@
 export interface IHandleFile {
-  path: string;
+  dir: string;
 }
 
 export interface IImageResizeRepository {

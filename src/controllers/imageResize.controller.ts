@@ -4,7 +4,7 @@ import { ImageResizeLogic } from "../logic";
 
 @Service()
 export class ImageResizeController {
-  logic: ImageResizeLogic;
+  private logic: ImageResizeLogic;
 
   constructor() {
     this.logic = Container.get(ImageResizeLogic);

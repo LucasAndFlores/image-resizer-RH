@@ -1,5 +1,4 @@
 import { Router, Request, Response, NextFunction } from "express";
-import Container from "typedi";
 import { ImageResizeController } from "../controllers";
 import { verifyIfImageCacheExist } from "../middlewares/cacheMiddleware";
 import { ImageResizeValidator } from "./schemas";

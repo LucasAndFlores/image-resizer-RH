@@ -7,8 +7,6 @@ import NodeCache from "node-cache";
 
 const imageResizeRouter = Router();
 
-const cache = new NodeCache({ stdTTL: 60 });
-
 const controller = new ImageResizeController();
 
 const cache = new NodeCache({ stdTTL: 60 });

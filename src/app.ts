@@ -1,8 +1,6 @@
-import express, { Express, NextFunction, Request, Response } from "express";
 import "reflect-metadata";
+import express, { Express, NextFunction, Request, Response } from "express";
 import "express-async-errors";
-import * as Sentry from "@sentry/node";
-import * as Tracing from "@sentry/tracing";
 import { AppError } from "./errors/AppError";
 import { router } from "./routes";
 

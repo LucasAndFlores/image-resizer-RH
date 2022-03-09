@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { app } from "../app";
 import { ImageResizeController } from "./imageResize.controller";
 import { ImageResizeLogic } from "../logic";
+import Container from "typedi";
 
 describe("Image Resize Controller", () => {
   it("Should be able to resize image with right parameters", async () => {
@@ -21,5 +22,9 @@ describe("Image Resize Controller", () => {
 
   it("Should not be able to resize image without a name", async () => {
     await request(app).get("/resize/200/400").expect(404);
+  });
+
+  it("Should not be able to resize image if there isn't one", async () => {
+    await request(app).get("/resize/brno10/200/400").expect(404);
   });
 });

@@ -4,7 +4,12 @@ services:
   app:
     build: .
     container_name: image-resizer-rh
-    cpus: 1
+    deploy: 
+      resources:
+        limits:
+          cpus: "1"
+        reservations:
+          cpus: "1"
     ports:
       - 5050:5050
     volumes:

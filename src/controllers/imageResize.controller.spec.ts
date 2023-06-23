@@ -1,9 +1,6 @@
-import request from "supertest";
 import "reflect-metadata";
+import request from "supertest";
 import { app } from "../app";
-import { ImageResizeController } from "./imageResize.controller";
-import { ImageResizeLogic } from "../logic";
-import Container from "typedi";
 
 describe("Image Resize Controller", () => {
   it("Should be able to resize image with right parameters", async () => {

@@ -4,12 +4,13 @@ import { verifyIfImageCacheExist } from "../middlewares/cacheMiddleware";
 import { ImageResizeValidator } from "./schemas";
 import { RouteValidator } from "./validation";
 import NodeCache from "node-cache";
+import Container from "typedi";
 
 const imageResizeRouter = Router();
 
 const cache = new NodeCache({ stdTTL: 60 });
 
-const controller = new ImageResizeController();
+const controller = Container.get(ImageResizeController);
 
 imageResizeRouter.get(
   "/resize/:imageName/:width/:height",

@@ -4,11 +4,7 @@ import { ImageResizeLogic } from "../logic";
 
 @Service()
 export class ImageResizeController {
-  private logic: ImageResizeLogic;
-
-  constructor() {
-    this.logic = Container.get(ImageResizeLogic);
-  }
+  constructor(private logic: ImageResizeLogic) {}
 
   async handle(req: Request, res: Response, next: NextFunction) {
     try {

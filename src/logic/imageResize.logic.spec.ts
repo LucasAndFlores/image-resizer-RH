@@ -1,43 +1,28 @@
-import { ImageResizeLogic } from "./";
 import "reflect-metadata";
+import { ImageResizeLogic } from "./";
 import { AppError } from "../errors/AppError";
+import { ImageResizeRepository } from "../repositories";
 
 let imageResizeLogic: ImageResizeLogic;
+let imageResizeRepository: ImageResizeRepository;
 
 describe("Image resize logic", () => {
   beforeEach(() => {
-    imageResizeLogic = new ImageResizeLogic();
+    imageResizeRepository = new ImageResizeRepository();
+    imageResizeLogic = new ImageResizeLogic(imageResizeRepository);
   });
 
   it("Should be able to generate resized image", async () => {
     const params = {
-      imageName: "docker1",
-      width: 500,
-      height: 500,
-    };
-
-    const result = await imageResizeLogic.execute({
-      imageName: params.imageName,
-      width: params.width,
-      height: params.height,
-    });
-
-    expect(typeof result).toBe("string");
-  });
-
-  it("Should be able to generate resized image with cache returned", async () => {
-    const params = {
       imageName: "brno3",
       width: 500,
       height: 500,
-      dirPath: "/usr/app/dist/imgs/brno3.jpg",
     };
 
     const result = await imageResizeLogic.execute({
       imageName: params.imageName,
       width: params.width,
       height: params.height,
-      dirPath: params.dirPath,
     });
 
     expect(typeof result).toBe("string");

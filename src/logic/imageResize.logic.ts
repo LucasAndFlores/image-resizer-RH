@@ -4,13 +4,10 @@ import { IImageFormatDTO } from "../dto/IImageFormatDTO";
 import Sharp from "sharp";
 import { AppError } from "../errors/AppError";
 import { IHandleFile } from "../interfaces";
+
 @Service()
 export class ImageResizeLogic {
-  private imageRepository: ImageResizeRepository;
-
-  constructor() {
-    this.imageRepository = Container.get(ImageResizeRepository);
-  }
+  constructor(private imageRepository: ImageResizeRepository) {}
 
   async execute({ height, imageName, width, dirPath }: IImageFormatDTO) {
     let filePath: IHandleFile = {
